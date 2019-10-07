@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <h4 class="center">Welcome to Minutes Save NLP Crowdsourcing Platform</h4>
+</div>
+  <div id="login" class="row">
+    <div class="col s6 offset-s3">
+      <ul class="tabs">
+        <li class="tab col s6"><a href="#test1">User Login</a></li>
+        <li class="tab col s6"><a href="#test2">Admin Login</a></li>
+      </ul>
+    </div>
+    <div id="test1" class="col s6 offset-s3">
+      <div class="content-section">
+          <form method="POST" action="">
+              {{ user_form.hidden_tag() }}
+                  <div class="input-field">
+                      {{ user_form.email.label}}
+                      {% if user_form.email.errors %}
+                          {{ user_form.email(class="invalid", id="user-email") }}
+                          <div class="invalid">
+                              {% for error in user_form.email.errors %}
+                                  <span class="red-text">{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ user_form.email(class="validate", id="user-email") }}
+                      {% endif %}
+                  </div>
+                  <div class="input-field">
+                      {{ user_form.password.label}}
+                      {% if user_form.password.errors %}
+                          {{ user_form.password(class="invalid", id="user-password") }}
+                          <div class="invalid">
+                              {% for error in user_form.password.errors %}
+                                  <span class="red-text">{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ user_form.password(class="validate", id="user-password") }}
+                      {% endif %}
+                  </div>
+                  <div id="flash-message-user">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                          <div class="alert alert-{{ category }}">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                  </div>
+                  <div>
+                    {{ user_form.user_submit(class="btn-small waves-effect waves-light", id="user-submit") }}
+                  </div>
+              <small class="text-muted ml-2">
+                  <a href="#">Forgot Password?</a>
+              </small>
+          </form>
+      </div>
+      <div class="border-top pt-3">
+          <small class="text-muted">
+              Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
+          </small>
+      </div>
+
+    </div>
+    <div id="test2" class="col s6 offset-s3">
+
+      <div class="content-section">
+          <form method="POST" action="">
+              {{ admin_form.hidden_tag() }}
+                  <div class="input-field">
+                      {{ admin_form.email.label}}
+                      {% if admin_form.email.errors %}
+                          {{ admin_form.email(class="invalid") }}
+                          <div class="invalid">
+                              {% for error in admin_form.email.errors %}
+                                  <span class="red-text">{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ admin_form.email(class="validate") }}
+                      {% endif %}
+                  </div>
+                  <div class="input-field">
+                      {{ admin_form.password.label}}
+                      {% if admin_form.password.errors %}
+                          {{ admin_form.password(class="invalid") }}
+                          <div class="invalid">
+                              {% for error in admin_form.password.errors %}
+                                  <span class="red-text">{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ admin_form.password(class="validate") }}
+                      {% endif %}
+                  </div>
+                  <div id="flash-message-admin">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                          <div class="alert alert-{{ category }}">
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                  </div>
+                  <div>
+                    {{ admin_form.admin_submit(class="btn-small waves-effect waves-light") }}
+                  </div>
+              <small class="text-muted ml-2">
+                  <a href="#">Forgot Password?</a>
+              </small>
+          </form>
+      </div>
+      <div class="border-top pt-3">
+          <small class="text-muted">
+              Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
+          </small>
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

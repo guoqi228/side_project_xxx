@@ -1,0 +1,18 @@
+nav{
+  background-color: #425563;
+}
+
+#login{
+  margin-top: 100px;
+}
+
+.btn-small{
+  background-color: #00a0df;
+}
+
+#flash-message-user{
+  margin-bottom: 10px;
+}
+#flash-message-admin{
+  margin-bottom: 10px;
+}
